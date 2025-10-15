@@ -141,7 +141,7 @@ private fun Content() {
             )
             Spacer(Modifier.height(16.dp))
             text.forEachIndexed { idx, text ->
-                Text(text, maxLines = 2, overflow = TextOverflow.Ellipsis)
+                Text(text, maxLines = 3, overflow = TextOverflow.Ellipsis)
                 if (idx == 1) {
                     Spacer(Modifier.height(12.dp))
                 } else {
