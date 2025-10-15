@@ -2,6 +2,7 @@
 
 package com.example.deletebutton.ui
 
+import android.view.HapticFeedbackConstants
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -37,8 +38,10 @@ import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.clipRect
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.hapticfeedback.HapticFeedback
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -169,6 +172,7 @@ private fun DeleteButton() {
             tween(200, easing = LinearEasing)
         }
     )
+    val view = LocalView.current
 
     Box(
         modifier = Modifier
@@ -182,6 +186,7 @@ private fun DeleteButton() {
                 detectTapGestures(
                     onPress = {
                         isPressed = true
+                        view.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
                         try {
                             awaitRelease()
                         } finally {
